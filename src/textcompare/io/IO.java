@@ -14,7 +14,7 @@ public interface IO {
 		}
 		int[] jpTextRange ();
 		int ptTextColumn ();
-		HashMap<CellPair, DataLocation> loadFile() throws IOException, InvalidFormatException;
+		HashMap<CellPair, DataLocation> loadFile(String a, int[] b, int c) throws IOException, InvalidFormatException;
 	}
 	
 	interface output {

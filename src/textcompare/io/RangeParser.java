@@ -6,7 +6,7 @@ import textcompare.Letters;
 
 public class RangeParser {
 	//Returns the index of the column provided
-	static int[] parseRange(String range) {
+	public static int[] parseRange(String range) {
 		int[] result = new int[3]; // [Index of the column, first row, last row]
 		int firstRow;
 		int lastRow;
@@ -30,7 +30,7 @@ public class RangeParser {
 		//		AA20:A21 - invalid input
 		//		AA20:AA2 - valid input (an additional check will be made later to ensure the last row index is higher than the first row index)
 		//		A20:B21 - invalid input
-			if (range.matches("^([A-Z]+)\\d*:\\1\\d+$|^[A-Z]+\\d*$")) {
+			if (range.matches("^([A-Z]+)\\d+:\\1\\d+$|^[A-Z]+\\d*$")) {
 			System.out.println("Valid Input (JP)");
 			//There's no need to look for the column index in each case, so let's look for it and store it now
 			//Remove all unnecessary characters from the valid range input and get equivalent index from enum
@@ -90,12 +90,13 @@ public class RangeParser {
 			return result;
 		}
 		//If the range provided is invalid, throw an error message and stop the program
-		JOptionPane.showMessageDialog(null,"No valid range or column provided", null, JOptionPane.ERROR_MESSAGE, null);
-		System.exit(0);
+			//Changed after UI was introduced
+//		JOptionPane.showMessageDialog(null,"No valid range or column provided", null, JOptionPane.ERROR_MESSAGE, null);
+//		System.exit(0);
 		return null; //Only for the IDE to stop bitching about it
 	}
 	
-	static int parseRangePT(String range) {
+	public static int parseRangePT(String range) {
 		//This regex only accepts a column as input
 		if (range.matches("^([A-Z]+)$")) {
 			System.out.println("Valid Input (PT)");

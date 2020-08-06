@@ -22,14 +22,19 @@ import textcompare.CellPair;
 
 
 public class Input implements IO.input {
-	public static final String XLSX_FILE_PATH = getInputPath();
+//	public static final String XLSX_FILE_PATH = getInputPath();
 
 	public static String getInputPath() {
-		    FileDialog dialog = new FileDialog((Frame)null, "Select File to Open");
+			Frame i = new Frame();
+			String file;
+			
+			
+		    FileDialog dialog = new FileDialog(i, "Select File to Open");
 		    dialog.setMode(FileDialog.LOAD);
 		    dialog.setVisible(true);
 		    //Get the full file path
-		    String file = dialog.getDirectory()+dialog.getFile();
+		    file = dialog.getDirectory()+dialog.getFile();
+		    
 		    return file;
 	}
 
@@ -41,10 +46,10 @@ public class Input implements IO.input {
 		}
 
 	//Reads the file and sheets needed
-	public HashMap<CellPair, DataLocation> loadFile() throws IOException, InvalidFormatException {
+	public HashMap<CellPair, DataLocation> loadFile(String XLSX_FILE_PATH, int[] COLUMN_RANGE_JP, int COLUMN_PT) throws IOException, InvalidFormatException {
 //		final String XLSX_FILE_PATH = getInputPath();
-		final int[] COLUMN_RANGE_JP = jpTextRange();
-		final int COLUMN_PT = ptTextColumn();
+//		final int[] COLUMN_RANGE_JP = jpTextRange();
+//		final int COLUMN_PT = ptTextColumn();
 		int columnIndexJP = COLUMN_RANGE_JP[0];
 		int columnIndexPT = COLUMN_PT;
 		int firstRow;

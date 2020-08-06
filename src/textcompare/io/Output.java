@@ -36,8 +36,7 @@ public class Output {
 	    return file;
 	}
 		
-	public static void writeToFile(HashMap<CellPair, DataLocation> textProblematic) throws EncryptedDocumentException, IOException {
-		final String inputPath = Input.XLSX_FILE_PATH;
+	public static void writeToFile(HashMap<CellPair, DataLocation> textProblematic, String inputPath, String outputPath) throws EncryptedDocumentException, IOException {
 		OutputStream output = null; //Default option overwrites the original file
 		
         try {
@@ -68,29 +67,40 @@ public class Output {
         	inputStream.close();
 		
         	//Writing the output file to the disk
-        	int dialog = JOptionPane.showConfirmDialog(null,
-        			"Do you want to overwrite the input file?",
-        			null,
-        			JOptionPane.YES_NO_CANCEL_OPTION);
+    		output = new FileOutputStream(outputPath);
+    		workbook.write(output);
+    		workbook.close();
+    		output.close(); 
+    		
+			JOptionPane.showConfirmDialog(null, "File saved successfully", null,
+					JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
         	
-        	if (dialog == JOptionPane.YES_OPTION) {
-        		output = new FileOutputStream(inputPath);
-                workbook.write(output);
-                workbook.close();
-                output.close(); 
-        		System.out.println("File overwritten successfully"); 
-        	} else if (dialog == JOptionPane.CANCEL_OPTION) {
-        		System.out.println("Operation canceled, program will be terminated");
-        		System.exit(0);
-        	} else {
-        		String outputPath = getOutputPath();
-        		output = new FileOutputStream(outputPath);
-                workbook.write(output);
-                workbook.close();
-                output.close();
-                System.out.println("File written successfully"); 
-        	}
-        	System.exit(0); //Terminating program after successfully running it
+        	
+    		//THE CODE BELOW WAS REMOVED AFTER UI WAS INTRODUCED
+    		
+//        	int dialog = JOptionPane.showConfirmDialog(null,
+//        			"Do you want to overwrite the input file?",
+//        			null,
+//        			JOptionPane.YES_NO_CANCEL_OPTION);
+//        	
+//        	if (dialog == JOptionPane.YES_OPTION) {
+//        		output = new FileOutputStream(inputPath);
+//                workbook.write(output);
+//                workbook.close();
+//                output.close(); 
+//        		System.out.println("File overwritten successfully"); 
+//        	} else if (dialog == JOptionPane.CANCEL_OPTION) {
+//        		System.out.println("Operation canceled, program will be terminated");
+//        		System.exit(0);
+//        	} else {
+////        		String outputPath = getOutputPath();
+//        		output = new FileOutputStream(outputPath);
+//                workbook.write(output);
+//                workbook.close();
+//                output.close();
+//                System.out.println("File written successfully"); 
+//        	}
+//        	System.exit(0); //Terminating program after successfully running it
         } 
         catch (Exception e) { 
             e.printStackTrace(); 
