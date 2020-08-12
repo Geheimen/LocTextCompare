@@ -54,6 +54,7 @@ public class Input implements IO.input {
 		int columnIndexPT = COLUMN_PT;
 		int firstRow;
 		int lastRow;
+		int choice = -1;
 		
 //		ArrayList<String> retrievedJpText = new ArrayList<String>();
 		HashMap<CellPair, DataLocation> retrievedData = new HashMap<CellPair, DataLocation>();
@@ -74,15 +75,16 @@ public class Input implements IO.input {
 		
         //Converting the list of sheets to an array so we can use JList
         JList list = new JList(sheetList.toArray());
-        int choice = JOptionPane.showConfirmDialog(null, list, "Pick the sheets to work on", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-		//Picking the sheets to work on
-        if (choice == JOptionPane.OK_OPTION) {
-            workValues = (ArrayList<String>) list.getSelectedValuesList();
-            System.out.println("Selected sheets = " + workValues);
-        } else {
-        	JOptionPane.showConfirmDialog(null, list, "Please pick a sheet to work on", JOptionPane.ERROR_MESSAGE);
-        	System.exit(0);
+        choice = JOptionPane.showConfirmDialog(null, list, "Pick the sheets to work on", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        
+      //Picking the sheets to work on
+        while(list.getSelectedValue() == null) {
+        	JOptionPane.showConfirmDialog(null, "Please pick a sheet to work on", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+        	choice = JOptionPane.showConfirmDialog(null, list, "Pick the sheets to work on", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        	if(choice == JOptionPane.CANCEL_OPTION) return null;
         }
+        
+        workValues = (ArrayList<String>) list.getSelectedValuesList();
         
 		//Working on each sheet chosen previously
         

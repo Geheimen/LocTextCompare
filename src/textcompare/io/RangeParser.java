@@ -1,7 +1,5 @@
 package textcompare.io;
 
-import javax.swing.JOptionPane;
-
 import textcompare.Letters;
 
 public class RangeParser {
@@ -93,7 +91,7 @@ public class RangeParser {
 			//Changed after UI was introduced
 //		JOptionPane.showMessageDialog(null,"No valid range or column provided", null, JOptionPane.ERROR_MESSAGE, null);
 //		System.exit(0);
-		return null; //Only for the IDE to stop bitching about it
+		return null; 
 	}
 	
 	public static int parseRangePT(String range) {
@@ -102,9 +100,9 @@ public class RangeParser {
 			System.out.println("Valid Input (PT)");
 			return Letters.valueOf(range).getIndex() - 1;
 		}
-		JOptionPane.showMessageDialog(null,"No valid column provided", null, JOptionPane.ERROR_MESSAGE, null);
-		System.exit(0);
-		return 0; //Only for the IDE to stop bitching about it
+//		JOptionPane.showMessageDialog(null,"No valid column provided", null, JOptionPane.ERROR_MESSAGE, null);
+//		System.exit(0);
+		return 0; 
 	}
 	
 	

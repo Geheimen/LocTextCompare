@@ -72,8 +72,8 @@ public class Output {
     		workbook.close();
     		output.close(); 
     		
-			JOptionPane.showConfirmDialog(null, "File saved successfully", null,
-					JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+//			JOptionPane.showConfirmDialog(null, "File saved successfully", null,
+//					JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
         	
         	
     		//THE CODE BELOW WAS REMOVED AFTER UI WAS INTRODUCED
